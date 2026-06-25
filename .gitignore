@@ -1,0 +1,11 @@
+# Banco de dados local
+*.db
+
+# Configurações locais do Claude
+.claude/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
