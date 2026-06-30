@@ -107,7 +107,7 @@ def btn_voltar(key):
 st.set_page_config(
     page_title="Metas — Prefeitura de Viçosa",
     layout="wide", page_icon="🏛️",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
 # ═══════════════════════════════════════
@@ -193,18 +193,52 @@ html, body, [class*="css"] { font-family: 'Inter', sans-serif; }
     border-radius:8px !important; border:1px solid #cbd5e1 !important;
     color:#1e293b !important; background:#fff !important;
 }
-/* Sidebar sempre aberta e visível */
-[data-testid="stSidebar"] {
-    min-width: 230px !important; max-width: 230px !important;
-    transform: translateX(0) !important; visibility: visible !important;
+/* ── DESKTOP: sidebar sempre aberta ─────────── */
+@media (min-width: 768px) {
+    [data-testid="stSidebar"] {
+        min-width: 230px !important; max-width: 230px !important;
+        transform: translateX(0) !important; visibility: visible !important;
+    }
+    [data-testid="stSidebar"][aria-expanded="false"] {
+        transform: translateX(0) !important; min-width: 230px !important;
+    }
+    [data-testid="stSidebarCollapseButton"],
+    button[data-testid="stBaseButton-headerNoPadding"],
+    section[data-testid="stSidebar"] > div > button,
+    [data-testid="collapsedControl"] { display: none !important; }
 }
-[data-testid="stSidebar"][aria-expanded="false"] {
-    transform: translateX(0) !important; min-width: 230px !important;
+
+/* ── MOBILE: layout responsivo ──────────────── */
+@media (max-width: 767px) {
+    /* Sidebar recolhível no mobile */
+    [data-testid="stSidebar"] {
+        min-width: unset !important;
+        max-width: 80vw !important;
+    }
+    /* Padding menor no mobile */
+    .main .block-container {
+        padding: 0.5rem 0.6rem 2rem 0.6rem !important;
+        max-width: 100% !important;
+    }
+    /* KPI cards menores */
+    .kpi-card { padding: 0.8rem !important; }
+    .kpi-value { font-size: 1.6rem !important; }
+    .kpi-label { font-size: 0.65rem !important; }
+    /* Botões maiores para toque */
+    .stButton > button {
+        padding: 0.65rem 1rem !important;
+        font-size: 0.9rem !important;
+        min-height: 44px !important;
+    }
+    /* Título menor */
+    h1 { font-size: 1.3rem !important; }
+    /* Tabs com texto menor */
+    .stTabs [data-baseweb="tab"] { padding: 0.4rem 0.7rem !important; font-size: 0.82rem !important; }
+    /* Inputs com altura maior para toque */
+    .stTextInput input, .stDateInput input { min-height: 44px !important; font-size: 1rem !important; }
+    /* Row cards mais compactos */
+    .row-card { padding: 0.5rem 0.6rem !important; }
 }
-[data-testid="stSidebarCollapseButton"],
-button[data-testid="stBaseButton-headerNoPadding"],
-section[data-testid="stSidebar"] > div > button,
-[data-testid="collapsedControl"] { display: none !important; }
 </style>
 """, unsafe_allow_html=True)
 
