@@ -125,7 +125,7 @@ def voltar_btn(key):
 st.set_page_config(
     page_title="Metas — Prefeitura de Viçosa",
     layout="wide", page_icon="🏛️",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
 )
 
 # ════════════════════════════════════════════════════════
@@ -289,7 +289,7 @@ hr { border:none; border-top:1px solid #e5e7eb; margin:16px 0; }
 
 /* ── MOBILE ───────────────────────────── */
 @media (max-width: 768px) {
-    .main .block-container { padding:1rem 0.75rem 2rem !important; }
+    .main .block-container { padding:4rem 0.75rem 2rem !important; }
     .kpi-grid { grid-template-columns:1fr !important; gap:10px !important; }
     .kpi-grid-3 { grid-template-columns:1fr !important; gap:10px !important; }
     [data-testid="stSidebar"] { max-width:85vw !important; }
@@ -297,6 +297,26 @@ hr { border:none; border-top:1px solid #e5e7eb; margin:16px 0; }
     .stTextInput input, .stTextArea textarea,
     .stSelectbox select, .stDateInput input { font-size:1rem !important; padding:12px 14px !important; }
     h1 { font-size:1.25rem !important; }
+
+    /* Botão hamburger nativo do Streamlit — estilizado para mobile */
+    [data-testid="collapsedControl"] {
+        display: flex !important;
+        position: fixed !important;
+        top: 12px !important; left: 12px !important;
+        z-index: 99999 !important;
+        background: #0f2a5e !important;
+        border-radius: 12px !important;
+        padding: 4px !important;
+        box-shadow: 0 4px 16px rgba(15,42,94,0.55) !important;
+    }
+    [data-testid="collapsedControl"] button {
+        color: #fff !important;
+        background: transparent !important;
+        border: none !important;
+        width: 40px !important; height: 40px !important;
+        font-size: 1.3rem !important;
+    }
+    [data-testid="collapsedControl"] svg { fill: #fff !important; }
 }
 
 /* ── TABLET ───────────────────────────── */
