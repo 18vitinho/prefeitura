@@ -407,6 +407,20 @@ with st.sidebar:
                 f"padding-bottom:16px;'>v2.0 · © 2025</p>", unsafe_allow_html=True)
 
 st.markdown("<style>.stApp{background:#f0f4f8 !important;}</style>", unsafe_allow_html=True)
+
+# Botão flutuante de menu — visível só no mobile
+st.markdown("""
+<div id="m-menu"
+     onclick="(window.parent.document.querySelector('[data-testid=collapsedControl] button')||window.parent.document.querySelector('section[data-testid=stSidebar] button')||window.parent.document.querySelector('button[data-testid=stBaseButton-headerNoPadding]'))?.click()"
+     style="display:none;position:fixed;top:14px;left:14px;z-index:99999;cursor:pointer;">
+  <div style="background:#0f2a5e;color:#fff;border-radius:12px;width:44px;height:44px;
+              display:flex;align-items:center;justify-content:center;
+              font-size:1.4rem;box-shadow:0 4px 16px rgba(15,42,94,0.5);">☰</div>
+</div>
+<style>@media(max-width:768px){#m-menu{display:block!important;}
+.main .block-container{padding-top:4rem!important;}}</style>
+""", unsafe_allow_html=True)
+
 pagina = st.session_state.pagina
 
 # ════════════════════════════════════════════════════════
