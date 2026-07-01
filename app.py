@@ -146,7 +146,10 @@ st.markdown("""
 *, *::before, *::after { box-sizing: border-box; }
 html, body, [class*="css"] { font-family:'Inter',sans-serif; }
 .stApp { background:#f0f4f8; }
-#MainMenu, footer, header { visibility:hidden; }
+#MainMenu, footer { visibility:hidden; }
+header { background:transparent !important; }
+[data-testid="stToolbar"], [data-testid="stDecoration"],
+[data-testid="stStatusWidget"] { display:none !important; }
 
 /* ── MAIN CONTAINER ────────────────────── */
 .main .block-container {
@@ -298,23 +301,30 @@ hr { border:none; border-top:1px solid #e5e7eb; margin:16px 0; }
     .stSelectbox select, .stDateInput input { font-size:1rem !important; padding:12px 14px !important; }
     h1 { font-size:1.25rem !important; }
 
-    /* Botão hamburger nativo do Streamlit — estilizado para mobile */
+    /* Botão hamburger nativo do Streamlit */
     [data-testid="collapsedControl"] {
+        visibility: visible !important;
         display: flex !important;
         position: fixed !important;
-        top: 12px !important; left: 12px !important;
+        top: 10px !important; left: 10px !important;
         z-index: 99999 !important;
         background: #0f2a5e !important;
         border-radius: 12px !important;
         padding: 4px !important;
         box-shadow: 0 4px 16px rgba(15,42,94,0.55) !important;
+        pointer-events: auto !important;
+        cursor: pointer !important;
+    }
+    [data-testid="collapsedControl"] * {
+        visibility: visible !important;
+        pointer-events: auto !important;
     }
     [data-testid="collapsedControl"] button {
         color: #fff !important;
         background: transparent !important;
         border: none !important;
         width: 40px !important; height: 40px !important;
-        font-size: 1.3rem !important;
+        cursor: pointer !important;
     }
     [data-testid="collapsedControl"] svg { fill: #fff !important; }
 }
@@ -428,18 +438,6 @@ with st.sidebar:
 
 st.markdown("<style>.stApp{background:#f0f4f8 !important;}</style>", unsafe_allow_html=True)
 
-# Botão flutuante de menu — visível só no mobile
-st.markdown("""
-<div id="m-menu"
-     onclick="(window.parent.document.querySelector('[data-testid=collapsedControl] button')||window.parent.document.querySelector('section[data-testid=stSidebar] button')||window.parent.document.querySelector('button[data-testid=stBaseButton-headerNoPadding]'))?.click()"
-     style="display:none;position:fixed;top:14px;left:14px;z-index:99999;cursor:pointer;">
-  <div style="background:#0f2a5e;color:#fff;border-radius:12px;width:44px;height:44px;
-              display:flex;align-items:center;justify-content:center;
-              font-size:1.4rem;box-shadow:0 4px 16px rgba(15,42,94,0.5);">☰</div>
-</div>
-<style>@media(max-width:768px){#m-menu{display:block!important;}
-.main .block-container{padding-top:4rem!important;}}</style>
-""", unsafe_allow_html=True)
 
 pagina = st.session_state.pagina
 
